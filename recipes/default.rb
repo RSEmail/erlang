@@ -33,7 +33,9 @@ when "redhat", "centos", "scientific"
     action :add
     only_if { node[:platform_version].to_f >= 5.0 && node[:platform_version].to_f < 6.0 }
   end
-  package "erlang"
+  package "erlang" do
+    retries 5
+  end
 else
   package "erlang"
 end
